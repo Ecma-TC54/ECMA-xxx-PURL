@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en-GB-oxendict">
+<meta charset="utf-8">
+<link rel="icon" href="img/favicon.ico">
+<style>
+  #metadata-block {
+    margin: 4em 0;
+    padding: 10px;
+    border: 1px solid #ee8421;
+  }
+  #metadata-block h1 {
+    font-size: 1.5em;
+    margin-top: 0;
+  }
+  #metadata-block > ul {
+    list-style-type: none;
+    margin: 0; padding: 0;
+  }
+
+  #ecma-logo {
+    width: 500px;
+  }
+
+  .unicode-property-table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 80%;
+  }
+
+  .corner-cell {
+    position: relative;
+    height: 2lh;
+  }
+  .corner-cell .slash {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom left, transparent calc(50% - 1px), gray, transparent calc(50% + 1px));
+  }
+  .corner-cell > .column {
+    position: absolute;
+    bottom: 0.4em;
+    left: 1em;
+  }
+  .corner-cell > .row {
+    position: absolute;
+    top: 0.4em;
+    right: 1em;
+  }
+</style>
+<pre class="metadata">
+  title: Package-URL Specification
+  shortname: ECMA-xxx
+  status: draft
+  location: https://tc54.org/ecmaXXX/
+  markEffects: true
+</pre>
+<p><img src="img/ecma-logo.svg" id="ecma-logo" alt="Ecma International logo"></p>
+<div id="metadata-block">
+  <h1>About this Specification</h1>
+  <p>The document at <a href="https://tc54.org/ecmaXXX/">https://tc54.org/ecmaXXX/</a> is the most accurate and up-to-date Package-URL specification.</p>
+  <p>This document is available as <a href>a single page</a> and as <a href="multipage/">multiple pages</a>.</p>
+  <h1>Contributing to this Specification</h1>
+  <p>This specification is developed on GitHub with the help of the Package-URL community. There are a number of ways to contribute to the development of this specification:</p>
+  <ul>
+    <li>GitHub Repository: <a href="https://github.com/Ecma-TC54/ECMA-xxx-PURL">https://github.com/Ecma-TC54/ECMA-xxx-PURL</a></li>
+    <li>Issues: <a href="https://github.com/Ecma-TC54/ECMA-xxx-PURL/issues">All Issues</a>, <a href="https://github.com/Ecma-TC54/ECMA-xxx-PURL/issues/new">File a New Issue</a></li>
+    <li>Pull Requests: <a href="https://github.com/tc39/ecma262/pulls">All Pull Requests</a>, <a href="https://github.com/Ecma-TC54/ECMA-xxx-PURL/pulls/new">Create a New Pull Request</a></li>
+    <li>
+      Editors:
+      <ul>
+        <li><a href="mailto:pombredanne@nexb.com">Philippe Ombredanne</a></li>
+        <li><a href="mailto:steve.springett@owasp.org">Steve Springett</a></li>
+      </ul>
+    </li>
+    <li>
+      Community:
+      <ul>
+        <li>Chat: <a href="https://cyclonedx.slack.com/archives/C06KTE3BWEB">Slack Channel</a></li>
+      </ul>
+    </li>
+  </ul>
+  <p>Refer to the <emu-xref href="#sec-colophon">colophon</emu-xref> for more information on how this document is created.</p>
+</div>
+
+<emu-intro id="sec-intro">
+  <h1>Introduction</h1>
+  <p>Software ecosystems have evolved into highly interconnected networks of components, packages, and dependencies. Managing this complexity demands a robust, uniform mechanism to identify and track software packages across diverse ecosystems and tools. Package-URL (PURL) was developed to address this challenge by providing a simple, consistent, and flexible approach to identifying software packages with precision and clarity.</p>
+  <p>PURL introduces a standardized URL-based syntax that uniquely identifies software packages, independent of their ecosystem or distribution channel. Unlike traditional identification methods, PURL embeds critical metadata directly into its structure, enabling efficient, accurate package identification at scale. This standardization ensures interoperability between tools and ecosystems, fostering greater collaboration and reducing ambiguity in software supply chain management.</p>
+  <p>Challenges addressed by PURL:</p>
+  <ul>
+    <li><strong>Ambiguity in Package Identification:</strong> With diverse naming conventions across ecosystems, identifying software packages reliably has historically been a challenge. PURL eliminates this ambiguity by creating a universal identifier with a predictable structure.</li>
+    <li><strong>Cross-Ecosystem Interoperability:</strong> Developers, organizations, and tools often work across multiple ecosystems, each with its own package management systems. PURL harmonizes these differences, enabling seamless interoperability.</li>
+    <li><strong>Enhanced Traceability and Risk Management:</strong> In an era where supply chain security is critical, PURL provides the foundation for identifying and tracing packages to their origins, dependencies, and potential vulnerabilities.</li>
+    <li><strong>Tooling and Automation:</strong> By standardizing package identification, PURL simplifies tooling development, automation, and integration for tasks such as software composition analysis, vulnerability management, and license compliance.</li>
+  </ul>
+  <p>As software supply chain security becomes a global priority, formalizing PURL as an international standard ensures its adoption and consistent implementation. Standardization under Ecma International Technical Committee 54 (TC54) positions PURL as a foundational building block for secure, transparent, and efficient software ecosystems worldwide.</p>
+  <p>By enabling a universally recognized and implementable specification, PURL aligns with global efforts to improve the security, reliability, and accountability of software supply chains. Its adoption ensures that organizations and developers can rely on a common language to manage software packages across the diverse and rapidly evolving software landscape.</p>
+</emu-intro>
+
+<emu-clause id="sec-scope">
+  <h1>Scope</h1>
+  <p>This Standard defines the Package-URL specification.</p>
+</emu-clause>
+
+<emu-clause id="sec-conformance">
+  <h1>Conformance</h1>
+  <p>A conforming implementation of Package-URL (PURL) must fully implement and support all elements defined within this specification, including the syntax, components, and semantic requirements for constructing and interpreting valid PURLs.</p>
+  <p>A conforming implementation of PURL must adhere to the syntax defined in this specification, ensuring that all PURLs are parsed, constructed, and validated according to the prescribed rules. The implementation must provide full support for ecosystem-agnostic behaviour, enabling PURLs to function consistently and reliably across diverse environments.</p>
+  <p>All required components of a PURL, such as the scheme, type, and name, must be present and validated according to the rules defined in this specification. Additionally, optional components, including qualifiers and subpaths, must be handled appropriately if provided, in full compliance with their specified behaviours.</p>
+  <p>Implementations must ensure that equivalent PURLs are consistently resolved to the same canonical representation. This includes strict adherence to normalisation and equivalence rules. Furthermore, implementations must process URI encoding and decoding for PURL components according to the standards outlined in RFC 3986.</p>
+  <p>Invalid PURLs that fail to conform to the specification must be identified and rejected by any conforming implementation. This guarantees the integrity and reliability of PURLs in all supported contexts.</p>
+  <p>A conforming implementation of PURL may extend its functionality by providing ecosystem-specific validation, processing, or metadata handling, as long as these extensions do not violate the core specification. Additionally, implementations may offer auxiliary tools or features, such as utilities for constructing or validating PURLs, provided they align with the standard's requirements.</p>
+  <p>A conforming implementation must not redefine or alter the core syntax, components, or semantics defined by this specification. Any prohibited extensions explicitly identified in the specification must not be implemented. Furthermore, behaviours that compromise the interoperability of PURLs across tools, platforms, or ecosystems are strictly disallowed.</p>
+  <p>A conforming implementation of Package-URL may choose to implement or not implement <dfn>Normative Optional</dfn> subclauses. If any Normative Optional behaviour is implemented, all of the behaviour in the containing Normative Optional clause must be implemented. A Normative Optional clause is denoted in this specification with the words "Normative Optional" in a coloured box, as shown below.</p>
+
+  <emu-clause id="sec-conformance-normative-optional" oldids="sec-conformance.normative-optional" example normative-optional>
+    <h1>Example Normative Optional Clause Heading</h1>
+    <p>Example clause contents.</p>
+  </emu-clause>
+</emu-clause>
+
+<emu-clause id="sec-normative-references">
+  <h1>Normative References</h1>
+  <p>The following referenced documents are indispensable for the application of this document. For dated references, only the edition cited applies. For undated references, the latest edition of the referenced document (including any amendments) applies.</p>
+  <p>
+    RFC 3986, <i>Uniform Resource Identifier (URI): Generic Syntax</i>.<br>
+    <a href="https://datatracker.ietf.org/doc/html/rfc3986">https://datatracker.ietf.org/doc/html/rfc3986</a>
+  </p>
+</emu-clause>
+
+<emu-clause id="sec-overview">
+  <h1>Overview</h1>
+  <p>This section contains a non-normative overview of the Package-URL specification.</p>
+  <p>The Package-URL (PURL) specification defines a lightweight, universal syntax for identifying software packages. By leveraging a URL-based format, PURL provides a consistent and interoperable mechanism for referencing software packages across a wide range of ecosystems and tools. Its design addresses the challenges of ambiguity, inconsistency, and fragmentation in software package identification, enabling better interoperability and traceability in modern software supply chains.</p>
+  <p>This specification focuses on the core aspects of PURL, including its syntax, required components, optional attributes, and conformance requirements. It does not cover ecosystem-specific types or extensions such as PURL Version Ranges (VERS). However, the flexibility of PURL allows it to be extended to meet the needs of diverse package ecosystems without compromising its universal applicability.</p>
+  <p>The primary audience for this specification includes developers, tool implementers, and organisations involved in software composition analysis, dependency management, and supply chain security. PURL is foundational to a variety of use cases, from software bill of materials (SBOM) generation and license compliance to vulnerability tracking and software artifact exchange.</p>
+  <p>While this document serves as the authoritative reference for implementing PURL, it is complemented by various ecosystem-specific guidance documents, examples, and related standards. These resources provide additional context and practical insights for leveraging PURL effectively.</p>
+  <p>This overview is non-normative and serves to provide context for the specification’s intent, purpose, and audience. For detailed requirements and conformance criteria, refer to the normative sections of this specification.</p>
+</emu-clause>
+
+<emu-clause id="sec-purl-specification">
+  <h1>Package-URL Specification</h1>
+  <p>TODO</p>
+</emu-clause>
+
+<emu-annex id="sec-colophon">
+  <h1>Colophon</h1>
+  <p>This specification is authored on <a href="https://github.com/Ecma-TC54/ECMA-xxx-PURL">GitHub</a> in a plaintext source format called <a href="https://github.com/tc39/ecmarkup">Ecmarkup</a>. Ecmarkup is an HTML and Markdown dialect that provides a framework and toolset for authoring ECMA specifications in plaintext and processing the specification into a full-featured HTML rendering that follows the editorial conventions for this document. Ecmarkup builds on and integrates a number of other formats and technologies including <a href="https://github.com/rbuckton/grammarkdown">Grammarkdown</a> for defining syntax and <a href="https://github.com/tc39/ecmarkdown">Ecmarkdown</a> for authoring algorithm steps. PDF renderings of this specification are produced by printing the HTML rendering to a PDF.</p>
+  <p>We extend our gratitude to TC39 for their exceptional work in developing Ecmarkup, which has greatly facilitated TC54's successful adoption of this tool for the preparation and maintenance of our technical specifications.</p>
+</emu-annex>
+
+<emu-annex id="sec-bibliography">
+  <h1>Bibliography</h1>
+  <p>TODO</p>
+  </emu-annex>
