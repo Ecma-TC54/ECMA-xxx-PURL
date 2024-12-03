@@ -1,0 +1,19 @@
+name: 'Build Documentation'
+
+on: [pull_request, push, workflow_dispatch]
+
+jobs:
+  build:
+    name: 'build & lint ecmarkup'
+    runs-on: ubuntu-22.04
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ljharb/actions/node/install@dfd9796898850cf07630d1bd4053a7c9a379e90f
+        name: 'nvm install lts/* && npm ci --no-audit'
+        env:
+          NPM_CONFIG_AUDIT: false
+        with:
+          node-version: lts/*
+          use-npm-ci: true
+      - run: npm run build-head

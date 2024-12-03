@@ -1,0 +1,27 @@
+name: 'Build and Deploy Documentation'
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: 'Deploy GitHub Pages'
+    runs-on: ubuntu-22.04
+    if: ${{ github.repository == 'Ecma-TC54/ECMA-xxx-PURL' }}
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ljharb/actions/node/install@dfd9796898850cf07630d1bd4053a7c9a379e90f
+        name: 'nvm install lts/* && npm ci --no-audit'
+        env:
+          NPM_CONFIG_AUDIT: false
+        with:
+          node-version: lts/*
+          use-npm-ci: true
+      - run: npm run build-only
+      - run: ./scripts/auto-deploy.sh
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
