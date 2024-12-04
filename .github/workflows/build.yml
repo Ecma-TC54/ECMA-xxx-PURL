@@ -31,5 +31,5 @@ jobs:
       - name: Archive "out" Directory
         uses: actions/upload-artifact@v3
         with:
-          name: out-directory
+          name: documentation-snapshot
           path: ./out
