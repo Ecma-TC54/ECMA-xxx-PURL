@@ -1,4 +1,4 @@
-name: 'Build Documentation'
+name: 'Build on CI'
 
 on: [pull_request, push, workflow_dispatch]
 
@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   build:
-    name: 'build & lint ecmarkup'
+    name: 'Build Documentation'
     runs-on: ubuntu-22.04
 
     steps:
