@@ -2,6 +2,11 @@ name: 'Build Documentation'
 
 on: [pull_request, push, workflow_dispatch]
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
   build:
     name: 'build & lint ecmarkup'
@@ -22,3 +27,14 @@ jobs:
 
       - name: Build Project
         run: npm run build-head
+
+      - name: Archive "out" Directory
+        uses: actions/upload-artifact@v3
+        with:
+          name: out-directory
+          path: ./out
+
+      - name: Upload Artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: ./out
