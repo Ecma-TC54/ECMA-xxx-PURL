@@ -8,12 +8,17 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-      - uses: actions/checkout@v4
-      - uses: ljharb/actions/node/install@dfd9796898850cf07630d1bd4053a7c9a379e90f
-        name: 'nvm install lts/* && npm ci --no-audit'
-        env:
-          NPM_CONFIG_AUDIT: false
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: lts/*
-          use-npm-ci: true
-      - run: npm run build-head
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build Project
+        run: npm run build-head
