@@ -4,7 +4,7 @@
   "version": "1.0.0-SNAPSHOT",
   "description": "The Package-URL specification",
   "scripts": {
-    "ipr-check": "node scripts/check-form tc39/ecma262 HEAD --all",
+    "ipr-check": "node scripts/check-form Ecma-TC54/ECMA-xxx-PURL HEAD --all",
     "build-head": "npm run build-only -- --lint-spec --strict",
     "prebuild-only": "npm run clean && mkdir out && cp -R img out",
     "build-only": "ecmarkup --verbose spec.html --multipage out",
