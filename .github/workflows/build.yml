@@ -37,7 +37,7 @@ jobs:
         run: npm run build-head
 
       - name: Archive "out" Directory
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: documentation-snapshot
           path: ./out
