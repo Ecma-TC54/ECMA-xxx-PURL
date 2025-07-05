@@ -222,14 +222,78 @@
       <li>A purl is a valid URL because it is a locator even though it has no Authority URL component: each type has a default repository location when defined.</li>
       <li>The purl components are mapped to these URL components:
         <ul>
-          <li><code class="language-plaintext">scheme</code>: this is a URL scheme with a constant value: pkg</li>
+          <li>scheme: this is a URL scheme with a constant value: <code class="language-plaintext">pkg</code></li>
           <li>purl type, namespace, name and version components: these are collectively mapped to a URL path</li>
           <li>purl qualifiers: this maps to a URL query</li>
           <li>purl subpath: this is a URL fragment</li>
         </ul>
       </li>
+      <li>Special URL schemes as defined in https://url.spec.whatwg.org/ such as file://, https://, http:// and ftp:// are NOT valid purl types. They are valid URL or URI schemes but they are not purl. They may be used to reference URLs in separate attributes outside of a purl or in a purl qualifier.</li>
+      <li>Version control system (VCS) URLs such git://, svn://, hg:// or as defined in Python pip or SPDX download locations are NOT valid purl types. They are valid URL or URI schemes but they are not purl. They are a closely related, compact and uniform way to reference VCS URLs. They may be used as references in separate attributes outside of a purl or in a purl qualifier.</li>
+      <li>A purl must NOT contain a URL Authority because there is no support for username, password, host or port components. A namespace segment may sometimes look like a host, but its interpretation is specific to a type.</li>
     </ul>
   </emu-clause>
+  <emu-clause id="sec-purl-specification-permitted-characters">
+    <h1>Permitted characters</h1>
+    <p>A canonical purl is composed of these permitted ASCII characters:</p>
+    <ul>
+      <li>the Alphanumeric Characters: A to Z, a to z, 0 to 9,</li>
+      <li>the Punctuation Characters: .-_~ (period '.', dash '-', underscore '_' and tilde '~'),</li>
+      <li>the Plus Character: + (plus '+'),</li>
+      <li>the Percent Character: % (percent sign '%'), and</li>
+      <li>the Separator Characters :/@?=&# (colon ':', slash '/', at sign '@', question mark '?', equal sign '=', ampersand '&' and pound sign '#').</li>
+    </ul>
+  </emu-clause>
+  <emu-clause id="sec-purl-specification-separator-characters">
+    <h1>Separator characters</h1>
+    <p>A canonical purl use the following separator characters:</p>
+    <ul>
+      <li>':' (colon) is the separator between scheme and type</li>
+      <li>'/' (slash) is the separator between type, namespace and name</li>
+      <li>'/' (slash) is the separator between subpath segments</li>
+      <li>'@' (at sign) is the separator between name and version</li>
+      <li>'?' (question mark) is the separator before qualifiers</li>
+      <li>'=' (equals) is the separator between a key and a value of a qualifier</li>
+      <li>'&' (ampersand) is the separator between qualifiers (each being a key=value pair)</li>
+      <li>'#' (number sign) is the separator before subpath</li>
+    </ul>
+  </emu-clause>
+  <emu-clause id="sec-purl-specification-character-encoding">
+    <h1>Character encoding</h1>
+    <ul>
+      <li>In the "Rules for each purl component" section, each component defines when and how to apply percent-encoding and decoding to its content.</li>
+      <li>When percent-encoding is required by a component definition, the component string MUST first be encoded as UTF-8.</li>
+      <li>In the component string, each "data octet" MUST be replaced by the percent-encoded "character triplet" applying the percent-encoding mechanism defined in RFC 3986 section 2.1 (https://datatracker.ietf.org/doc/html/rfc3986#section-2.1), including the RFC definition of "data octet" and "character triplet", and using these definitions for RFC's "allowed set" and "delimiters":
+        <ul>
+          <li>"allowed set" is composed of the Alphanumeric Characters and the Punctuation Characters</li>
+          <li>"delimiters" is composed of the Separator Characters</li>
+        </ul>
+      </li>
+      <li>The following characters MUST NOT be percent-encoded:
+        <ul>
+          <li>the Alphanumeric Characters,</li>
+          <li>the Punctuation Characters,</li>
+          <li>the Separator Characters when being used as purl separators,</li>
+          <li>the colon ':', whether used as a Separator Character or otherwise, and</li>
+          <li>the percent sign '%' when used to represent a percent-encoded character.</li>
+        </ul>
+      </li>
+      <li>Where the space ' ' is permitted, it MUST be percent-encoded as '%20'.</li>
+      <li>With the exception of the percent-encoding mechanism, the rules regarding percent-encoding are defined by this specification alone.</li>
+    </ul>
+  </emu-clause>
+  <emu-clause id="sec-purl-specification-component-rules">
+    <h1>Component-level rules</h1>
+  </emu-clause>
+  <emu-clause id="sec-purl-specification-component-rules">
+    <h1>Component-level rules</h1>
+    <p>TODO</p>
+  </emu-clause>
+</emu-clause>
+
+<emu-clause id="sec-purl-type-schema">
+  <h1>PURL Type Schema</h1>
+  <p>TODO</p>
 </emu-clause>
 
 <emu-annex id="sec-colophon">
