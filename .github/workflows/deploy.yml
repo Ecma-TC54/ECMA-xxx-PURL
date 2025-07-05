@@ -23,19 +23,12 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
-
-      - name: Cache npm dependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.npm
-          key: npm-cache-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            npm-cache-${{ runner.os }}-
+          node-version: '18'
 
       - name: Install Dependencies
-        run: npm install
+        run: npm ci --no-audit --no-fund --verbose
+        env:
+          PUPPETEER_SKIP_DOWNLOAD: "true"
 
       - name: Build Project
         run: npm run build-only
