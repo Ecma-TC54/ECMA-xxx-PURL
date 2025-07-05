@@ -23,6 +23,8 @@ jobs:
 
       - name: Install Dependencies
         run: npm ci --no-audit --no-fund --verbose
+        env:
+          PUPPETEER_SKIP_DOWNLOAD: "true"
 
       - name: Build Project
         run: npm run build
