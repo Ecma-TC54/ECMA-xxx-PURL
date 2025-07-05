@@ -1,17 +1,14 @@
-name: 'Build on CI'
+name: 'Build and Deploy Documentation'
 
 on: [pull_request, push, workflow_dispatch]
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 jobs:
-  build:
-    name: 'Build Documentation'
+  install:
+    name: 'Install Dependencies'
     runs-on: ubuntu-22.04
-
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -26,6 +23,35 @@ jobs:
         env:
           PUPPETEER_SKIP_DOWNLOAD: "true"
 
+      - name: Cache node_modules
+        uses: actions/cache/save@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('package-lock.json') }}
+
+  build-docs:
+    name: 'Build Documentation'
+    runs-on: ubuntu-22.04
+    needs: install
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Restore node_modules
+        uses: actions/cache/restore@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('package-lock.json') }}
+
       - name: Build Project
         run: npm run build
 
@@ -35,10 +61,29 @@ jobs:
           name: documentation-snapshot
           path: ./out
 
-      - name: Cleanup
-        run: npm run clean
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
 
-      - name: Build Project for PDF
+  build-pdf:
+    name: 'Build Project for PDF'
+    runs-on: ubuntu-22.04
+    needs: install
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Restore node_modules
+        uses: actions/cache/restore@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('package-lock.json') }}
+
+      - name: Build for PDF
         run: npm run build-for-pdf
 
       - name: Run Prince Container
