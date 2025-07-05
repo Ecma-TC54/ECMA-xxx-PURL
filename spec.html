@@ -73,6 +73,7 @@
     <li>
       Editors:
       <ul>
+        <li><a href="mailto:mjherzog@nexb.com">Michael Herzog</a></li>
         <li><a href="mailto:pombredanne@nexb.com">Philippe Ombredanne</a></li>
         <li><a href="mailto:steve.springett@owasp.org">Steve Springett</a></li>
       </ul>
@@ -284,12 +285,156 @@
   </emu-clause>
   <emu-clause id="sec-purl-specification-component-rules">
     <h1>Component-level rules</h1>
+    <p>A purl string is an ASCII URL string composed of seven components. Except as expressly stated otherwise in this section, each component:</p>
+    <ul>
+      <li>MAY be composed of any of the characters defined in the "Permitted characters" section</li>
+      <li>MUST be encoded as defined in the "Character encoding" section</li>
+    </ul>
+    <p>The rules for each component are:</p>
+    <emu-clause id="sec-purl-specification-rules-scheme">
+      <h1>Scheme</h1>
+      <ul>
+        <li>The scheme is a constant with the value "pkg".</li>
+        <li>The scheme MUST be followed by an unencoded colon ':'.</li>
+        <li>PURL parsers MUST accept URLs where the scheme and colon ':' are followed by one or more slash '/' characters, such as 'pkg://', and MUST ignore and remove all such '/' characters.</li>
+      </ul>
+    </emu-clause>
+    <emu-clause id="sec-purl-specification-rules-type">
+      <h1>Type</h1>
+      <ul>
+        <li>The package type MUST be composed only of ASCII letters and numbers, period '.', plus '+', and dash '-'.</li>
+        <li>The type MUST start with an ASCII letter.</li>
+        <li>The type MUST NOT be percent-encoded.</li>
+        <li>The type is case insensitive. The canonical form is lowercase.</li>
+      </ul>
+    </emu-clause>
+    <emu-clause id="sec-purl-specification-rules-namespace">
+      <h1>Namespace</h1>
+      <ul>
+        <li>The namespace is optional, unless required by the package's type definition.</li>
+        <li>If present, the namespace MAY contain one or more segments, separated by a single unencoded slash '/' character.</li>
+        <li>All leading and trailing slashes '/' are not significant and SHOULD be stripped in the canonical form. They are not part of the namespace.</li>
+        <li>Each namespace segment MUST be a percent-encoded string.</li>
+        <li>When percent-decoded, a segment:
+          <ul>
+            <li>MUST NOT contain any slash '/' characters.</li>
+            <li>MUST NOT be empty.</li>
+            <li>MAY contain any Unicode character other than '/' unless the package's type definition provides otherwise.</li>
+          </ul>
+        </li>
+        <li>A URL host or Authority MUST NOT be used as a namespace. Use instead a repository_url qualifier. Note however that for some types, the namespace may look like a host.</li>
+      </ul>
+    </emu-clause>
+    <emu-clause id="sec-purl-specification-rules-name">
+      <h1>Name</h1>
+      <ul>
+        <li>The name is prefixed by a single slash '/' separator when the namespace is not empty.</li>
+        <li>All leading and trailing slashes '/' are not significant and SHOULD be stripped in the canonical form. They are not part of the name.</li>
+        <li>A name MUST be a percent-encoded string.</li>
+        <li>When percent-decoded, a name MAY contain any Unicode character unless prohibited by the package's type definition in PURL-TYPES.rst.</li>
+      </ul>
+    </emu-clause>
+    <emu-clause id="sec-purl-specification-rules-version">
+      <h1>Version</h1>
+      <ul>
+        <li>The version is prefixed by a '@' separator when not empty.</li>
+        <li>This '@' is not part of the version.</li>
+        <li>A version MUST be a percent-encoded string.</li>
+        <li>When percent-decoded, a version MAY contain any Unicode character unless the package's type definition provides otherwise.</li>
+        <li>A version is a plain and opaque string.</li>
+      </ul>
+    </emu-clause>
+    <emu-clause id="sec-purl-specification-rules-qualifiers">
+      <h1>Qualifiers</h1>
+      <ul>
+        <li>The qualifiers component MUST be prefixed by an unencoded question mark '?' separator when not empty. This '?' separator is not part of the qualifiers component.</li>
+        <li>The qualifiers component is composed of one or more key=value pairs. Multiple key=value pairs MUST be separated by an unencoded ampersand '&'. This '&' separator is not part of an individual qualifier.</li>
+        <li>A key and value MUST be separated by the unencoded equal sign '=' character. This '=' separator is not part of the key or value.</li>
+        <li>A value MUST NOT be an empty string: a key=value pair with an empty value is the same as if no key=value pair exists for this key.</li>
+        <li>For each key=value pair:
+          <ul>
+            <li>The key MUST be composed only of lowercase ASCII letters and numbers, period '.', dash '-' and underscore '_'.</li>
+            <li>A key MUST start with an ASCII letter.</li>
+            <li>A key MUST NOT be percent-encoded.</li>
+            <li>Each key MUST be unique among all the keys of the qualifiers component.</li>
+            <li>A value MAY be composed of any character and all characters MUST be encoded as described in the "Character encoding" section.</li>
+          </ul>
+        </li>
+      </ul>
+    </emu-clause>
+    <emu-clause id="sec-purl-specification-rules-subpath">
+      <h1>Subpath</h1>
+      <ul>
+        <li>The subpath string is prefixed by a '#' separator when not empty.</li>
+        <li>This '#' is not part of the subpath.</li>
+        <li>The subpath contains zero or more segments, separated by slash '/'.</li>
+        <li>Leading and trailing slashes '/' are not significant and SHOULD be stripped in the canonical form.</li>
+        <li>Each subpath segment MUST be a percent-encoded string.</li>
+        <li>When percent-decoded, a segment:
+          <ul>
+            <li>MUST NOT contain a '/'</li>
+            <li>MUST NOT be any of '..' or '.'</li>
+            <li>MUST NOT be empty</li>
+          </ul>
+        </li>
+        <li>The subpath MUST be interpreted as relative to the root of the package</li>
+      </ul>
+    </emu-clause>
   </emu-clause>
 </emu-clause>
 
 <emu-clause id="sec-purl-type-schema">
   <h1>PURL Type Schema</h1>
-  <p>TODO</p>
+  <p>Each package manager, platform, type, or ecosystem has its own conventions and protocols to identify, locate, and provision software packages. The package type is the component of a package URL that is used to capture this information with a short string such as maven, npm, nuget, gem, pypi, etc. Known purl type definitions are formalized here independent of the core Package URL specification. See also a candidate list further down.</p>
+  <p>Definitions can also include types reserved for future use.</p>
+  <p>The PURL Type JSON Schema is the reference implementation for the Ecma standard.</p>
+  <emu-table>
+    <emu-caption>Properties for the root object</emu-caption>
+    <table>
+      <tr>
+        <th>Property</th>
+        <th>Type</th>
+        <th>Requirement</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>$id</td>
+        <td>object</td>
+        <td></td>
+        <td>Schema defining the structure and constraints of a specific PURL type</td>
+      </tr>
+      <tr>
+        <td>definitions</td>
+        <td>string</td>
+        <td></td>
+        <td>Specifies whether this component is required, optional, or prohibited</td>
+      </tr>
+      <tr>
+        <td>character_constraints </td>
+        <td>string</td>
+        <td></td>
+        <td>Regex defining valid characters</td>
+      </tr>
+      <tr>
+        <td>case_rules </td>
+        <td>object</td>
+        <td></td>
+        <td>Defines case sensitivity and normalization rules</td>
+      </tr>
+      <tr>
+        <td>properties </td>
+        <td></td>
+        <td></td>
+        <td>Determines if case must be preserved or ignored</td>
+      </tr>
+      <tr>
+        <td>normalization </td>
+        <td></td>
+        <td></td>
+        <td>Defines if values must be normalized to lowercase, uppercase, or kept as provided</td>
+      </tr>
+    </table>
+  </emu-table>
 </emu-clause>
 
 <emu-annex id="sec-colophon">
