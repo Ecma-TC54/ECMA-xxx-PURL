@@ -1,6 +1,10 @@
 name: 'Build and Deploy Documentation'
 
-on: [pull_request, push, workflow_dispatch]
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -33,10 +37,6 @@ jobs:
     name: 'Build Documentation'
     runs-on: ubuntu-22.04
     needs: install
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -58,7 +58,23 @@ jobs:
       - name: Archive "out" Directory
         uses: actions/upload-artifact@v4
         with:
-          name: documentation-snapshot
+          name: html-documentation
+          path: ./out
+
+  deploy-docs:
+    name: 'Deploy Documentation'
+    runs-on: ubuntu-22.04
+    needs: build-docs
+    if: github.ref == 'refs/heads/main'
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    steps:
+      - name: Restore html-documentation Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: html-documentation
           path: ./out
 
       - name: Upload GitHub Pages artifact
@@ -69,8 +85,8 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
 
-  build-pdf:
-    name: 'Build Project for PDF'
+  build-for-pdf:
+    name: 'Build Documentation for PDF'
     runs-on: ubuntu-22.04
     needs: install
     steps:
@@ -90,6 +106,23 @@ jobs:
 
       - name: Build for PDF
         run: npm run build-for-pdf
+
+      - name: Archive PDF Output Directory
+        uses: actions/upload-artifact@v4
+        with:
+          name: html-printable-documentation
+          path: ./out
+
+  publish-pdf:
+    name: 'Publish PDF'
+    runs-on: ubuntu-22.04
+    needs: build-for-pdf
+    steps:
+      - name: Restore PDF Output
+        uses: actions/download-artifact@v4
+        with:
+          name: html-printable-documentation
+          path: ./out
 
       - name: Run Prince Container
         run: |
