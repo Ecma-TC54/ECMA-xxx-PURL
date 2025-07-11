@@ -14,10 +14,12 @@
   }
   #metadata-block > ul {
     list-style-type: none;
-    margin: 0; padding: 0;
+    margin: 0;
+    padding: 0;
   }
 
   #ecma-logo {
+    background: var(--figure-background);
     width: 500px;
   }
 
@@ -48,6 +50,90 @@
     position: absolute;
     top: 0.4em;
     right: 1em;
+  }
+
+  @supports (color-scheme: dark) {
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --foreground-color: #111;
+        --background-color: #fff;
+
+        --link-foreground-color: #206ca7;
+        --link-hover-foreground-color: #239dee;
+
+        --user-code-foreground-color: brown;
+
+        --var-foreground-color: #218379;
+
+        --referenced0-background-color: #ffff6c;
+        --referenced1-background-color: #ffa4a8;
+        --referenced2-background-color: #96e885;
+        --referenced3-background-color: #3eeed2;
+        --referenced4-background-color: #eacfb6;
+        --referenced5-background-color: #82ddff;
+        --referenced6-background-color: #ffbcf2;
+
+        --note-background-color: #e9fbe9;
+        --note-border-color: #52e052;
+        --note-editor-border-color: #faa;
+
+        --nt-link-foreground-color: #333;
+
+        --production-rhs-background-color: #f0f0f0;
+        --production-rhs-border-color: #888;
+
+        --params-foreground-color: #2aa198;
+        --opt-foreground-color: #b58900;
+
+        --title-foreground-color: #f60;
+
+        --caption-foreground-color: #555555;
+
+        --table-header-background-color: #eeeeee;
+
+        --highlight-background-color-start: rgba(249, 241, 172, 1);
+        --highlight-background-color-end: rgba(249, 241, 172, 0);
+
+        --highlight-background-color: rgba(249, 241, 172, 1);
+
+        --ins-background-color: #e0f8e0;
+        --ins-border-color: #396;
+
+        --del-background-color: #fee;
+
+        --control-foreground-color: #eee;
+        --control-dimmed-foreground-color: #666;
+        --control-background-color: #ddd;
+        --control-dark-background-color: #ccc;
+        --control-border-color: #aaa;
+        --control-light-border-color: #bbb;
+        --control-shortcut-background-color: #eee;
+        --control-shortcut-shadow-color: #ccc;
+        --control-dialog-fade-color: rgba(255, 255, 255, 0.6);
+
+        --control-link-foreground-color: #1567a2;
+
+        --control-input-background-color: #bbb;
+        --control-input-border-color: #999;
+
+        --menu-header-background-color: #bbb;
+        --menu-revealed-link-foreground-color: #206ca7;
+        --menu-unpin-hover-foreground-color: #bb1212;
+
+        --menu-trace-list-foreground-color: #999;
+        --menu-trace-list-background-color: #222;
+
+        --toolbox-tail-background-outside-color: rgba(0, 0, 0, 0);
+        --toolbox-tail-border-outside-color: rgba(204, 204, 204, 0);
+
+        --normative-optional-background-color: #ffeedd;
+        --normative-optional-border-color: #ff6600;
+
+        --attributes-tag-foreground-color: #884400;
+
+        --figure-background: #fff;
+      }
+    }
   }
 </style>
 <pre class="metadata">
