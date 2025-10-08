@@ -282,22 +282,25 @@
   a[data-print-href]::after {
     content: none;
   }
+
+  #sec-schemas pre {
+    break-inside: auto;
+  }
 </style>
 <pre class="metadata">
   title: Package-URL Specification
   shortname: ECMA-xxx
-  status: draft
+  status: standard
   location: https://tc54.org/ecmaXXX/
   markEffects: true
   version: 1<sup>st</sup> Edition
-  <!-- date: 2024-06-25 -->
 </pre>
 <p><img src="img/ecma-logo.svg" id="ecma-logo" alt="Ecma International logo"></p>
 <div id="metadata-block">
-  <h1>About this Specification</h1>
+  <h1>About this specification</h1>
   <p>The document at <a href="https://tc54.org/ecmaXXX/">https://tc54.org/ecmaXXX/</a> is the most accurate and up-to-date Package-URL specification.</p>
   <p>This document is available as <a href>a single page</a> and as <a href="multipage/">multiple pages</a>.</p>
-  <h1>Contributing to this Specification</h1>
+  <h1>Contributing to this specification</h1>
   <p>This specification is developed on GitHub with the help of the Package-URL community. There are a number of ways to contribute to the development of this specification:</p>
   <ul>
     <li>GitHub Repository: <a href="https://github.com/Ecma-TC54/ECMA-xxx-PURL">https://github.com/Ecma-TC54/ECMA-xxx-PURL</a></li>
@@ -335,6 +338,7 @@
   </ul>
   <p>As software supply chain security becomes a global priority, formalizing PURL as an international standard ensures its adoption and consistent implementation. Standardization under Ecma International Technical Committee 54 (TC54) positions PURL as a foundational building block for secure, transparent, and efficient software ecosystems worldwide.</p>
   <p>By enabling a universally recognized and implementable specification, PURL aligns with global efforts to improve the security, reliability, and accountability of software supply chains. Its adoption ensures that organizations and developers can rely on a common language to manage software packages across the diverse and rapidly evolving software landscape.</p>
+  <p class="adoption-info">This Ecma Standard was developed by Technical Committee 54 and was adopted by the General Assembly of December 2025.</p>
 </emu-intro>
 
 <emu-clause id="sec-scope">
@@ -345,7 +349,7 @@
 <emu-clause id="sec-conformance">
   <h1>Conformance</h1>
   <emu-clause id="sec-requirements-terminology">
-    <h1>Requirements Terminology</h1>
+    <h1>Requirements terminology</h1>
     <p>In this standard, the words that are used to define the significance of each requirement are detailed below. These words are used in accordance with their definitions in [RFC 2119](https://www.ietf.org/rfc/rfc2119.txt), and their respective meanings are reproduced below:</p>
     <ul>
       <li>Must: This word, or the adjective “required” and the auxiliary verb "shall", means that the item is an absolute requirement of the standard.</li>
@@ -355,7 +359,7 @@
     <p>The words "must not", "shall not", "should not", and "not recommended", are the negative forms of "must", "shall", "should", and "recommended", respectively. There is no negative form of "may".</p>
   </emu-clause>
   <emu-clause id="sec-implementation-conformance">
-    <h1>Implementation Conformance</h1>
+    <h1>Implementation conformance</h1>
     <p>A conforming implementation of Package-URL (PURL) must fully implement and support all elements defined within this specification, including the syntax, components, and semantic requirements for constructing and interpreting valid PURLs.</p>
     <p>A conforming implementation of PURL must adhere to the syntax defined in this specification, ensuring that all PURLs are parsed, constructed, and validated according to the prescribed rules. The implementation must provide full support for ecosystem-agnostic behaviour, enabling PURLs to function consistently and reliably across diverse environments.</p>
     <p>All required components of a PURL, such as the scheme, type, and name, must be present and validated according to the rules defined in this specification. Additionally, optional components, including qualifiers and subpaths, must be handled appropriately if provided, in full compliance with their specified behaviours.</p>
@@ -368,26 +372,26 @@
 </emu-clause>
 
 <emu-clause id="sec-normative-references">
-  <h1>Normative References</h1>
-  <p>The following referenced documents are indispensable for the application of this document. For dated references, only the edition cited applies. For undated references, the latest edition of the referenced document (including any amendments) applies.</p>
+  <h1>Normative references</h1>
+  <p>The following documents are referred to in the text in such a way that some or all of their content constitutes requirements of this document. For dated references, only the edition cited applies. For undated references, the latest edition of the referenced document (including any amendments) applies.</p>
   <p>
-    INCITS 4-1986 [R2022], <i>Information Systems - Coded Character Sets - 7-Bit Standard Code for Information Interchange (7-Bit ASCII)</i>.<br>
-    <a href="https://webstore.ansi.org/standards/incits/incits1986r2022">https://webstore.ansi.org/standards/incits/incits1986r2022</a>
-  </p>
-  <p>
-    RFC 3986, <i>Uniform Resource Identifier (URI): Generic Syntax</i>.<br>
-    <a href="https://datatracker.ietf.org/doc/html/rfc3986">https://datatracker.ietf.org/doc/html/rfc3986</a>
-  </p>
-  <p>
-    The Unicode Standard.<br>
-    <a href="https://www.unicode.org/versions/latest/">https://www.unicode.org/versions/latest/</a>
-  </p>
-  <p>
-    ECMA-404, <i>The JSON Data Interchange Format</i>.<br>
+    ECMA-404, <i>The JSON Data Interchange Format</i><br>
     <a href="https://www.ecma-international.org/publications-and-standards/standards/ecma-404/">https://www.ecma-international.org/publications-and-standards/standards/ecma-404/</a>
   </p>
   <p>
-    IETF Draft, March 2018, <i>JSON Schema Validation: A Vocabulary for Structural Validation of JSON (Draft-07)</i>.<br>
+    INCITS 4-1986 [R2022], <i>Information Systems - Coded Character Sets - 7-Bit Standard Code for Information Interchange (7-Bit ASCII)</i><br>
+    <a href="https://webstore.ansi.org/standards/incits/incits1986r2022">https://webstore.ansi.org/standards/incits/incits1986r2022</a>
+  </p>
+  <p>
+    RFC 3986, <i>Uniform Resource Identifier (URI): Generic Syntax</i><br>
+    <a href="https://datatracker.ietf.org/doc/html/rfc3986">https://datatracker.ietf.org/doc/html/rfc3986</a>
+  </p>
+  <p>
+    The Unicode Standard<br>
+    <a href="https://www.unicode.org/versions/latest/">https://www.unicode.org/versions/latest/</a>
+  </p>
+  <p>
+    IETF Draft, March 2018, <i>JSON Schema Validation: A Vocabulary for Structural Validation of JSON (Draft-07)</i><br>
     <a href="https://datatracker.ietf.org/doc/html/draft-handrews-json-schema-validation-01">https://datatracker.ietf.org/doc/html/draft-handrews-json-schema-validation-01</a>
   </p>
 </emu-clause>
@@ -403,7 +407,7 @@
 </emu-clause>
 
 <emu-clause id="sec-purl-specification">
-  <h1>Package-URL Specification</h1>
+  <h1>Package-URL specification</h1>
   <p>PURL stands for <strong>package URL</strong>.</p>
   <p>A PURL is a URL composed of seven components:</p>
   <pre>
@@ -417,11 +421,13 @@
   <emu-table>
     <emu-caption>Components of a PURL</emu-caption>
     <table>
-      <tr>
-        <th>Component</th>
-        <th>Requirement</th>
-        <th>Description</th>
-      </tr>
+      <thead>
+        <tr>
+          <th>Component</th>
+          <th>Requirement</th>
+          <th>Description</th>
+        </tr>
+      </thead>
       <tr>
         <td>scheme</td>
         <td>Required</td>
@@ -527,7 +533,7 @@
     <ul>
       <li>In the <emu-xref href="#sec-purl-specification-component-rules" title></emu-xref> section, each component defines when and how to apply percent-encoding and decoding to its content.</li>
       <li>When percent-encoding is required by a component definition, the component string must first be encoded as UTF-8.</li>
-      <li>In the component string, each "data octet" must be replaced by the percent-encoded "character triplet" applying the percent-encoding mechanism defined in <a href="https://datatracker.ietf.org/doc/html/rfc3986#section-2.1">RFC 3986 section 2.1</a>, including the RFC definition of "data octet" and "character triplet", and using these definitions for RFC's "allowed set" and "delimiters":</li>
+      <li>In the component string, each "data octet" must be replaced by the percent-encoded "character triplet" applying the percent-encoding mechanism defined in <a href="https://datatracker.ietf.org/doc/html/rfc3986#section-2.1">RFC 3986 section 2.1</a>, including the RFC definition of "data octet" and "character triplet", and using these definitions for RFC's "allowed set" and "delimiters":
         <ul>
           <li>"allowed set" is composed of the Alphanumeric Characters and the Punctuation Characters</li>
           <li>"delimiters" is composed of the Separator Characters</li>
@@ -669,12 +675,14 @@
   <emu-table>
     <emu-caption id="caption-1">Properties for the root object</emu-caption>
     <table>
-      <tr>
-        <th>Property</th>
-        <th>Type</th>
-        <th>Requirement</th>
-        <th>Description</th>
-      </tr>
+      <thead>
+        <tr>
+          <th>Property</th>
+          <th>Type</th>
+          <th>Requirement</th>
+          <th>Description</th>
+        </tr>
+      </thead>
       <tr>
         <td>type</td>
         <td>String</td>
@@ -782,12 +790,14 @@
   <emu-table>
     <emu-caption id="caption-5">Properties for the repository object</emu-caption>
     <table>
-      <tr>
-        <th>Property</th>
-        <th>Type</th>
-        <th>Requirement</th>
-        <th>Description</th>
-      </tr>
+      <thead>
+        <tr>
+          <th>Property</th>
+          <th>Type</th>
+          <th>Requirement</th>
+          <th>Description</th>
+        </tr>
+      </thead>
       <tr>
         <td>use_repository</td>
         <td>Boolean</td>
@@ -798,7 +808,7 @@
         <td>default_repository_url</td>
         <td>String</td>
         <td>Optional</td>
-        <td>The default public repository URL for this PURL type</td>
+        <td>The default public repository URL for this PURL type.</td>
       </tr>
       <tr>
         <td>note</td>
@@ -820,7 +830,7 @@
   <strong>Property:</strong> default_repository_url (Optional)<br>
   <strong>Type:</strong> String<br>
   <strong>Format:</strong> URI as specified in <a href="https://www.ietf.org/rfc/rfc3986.html">RFC 3986</a><br>
-  <p>The default public repository URL for this PURL type</p>
+  <p>The default public repository URL for this PURL type.</p>
 </emu-clause><emu-clause id="sec--repository-note">
   <h1>Note</h1>
   <br><strong>Location:</strong> /repository/note<br>
