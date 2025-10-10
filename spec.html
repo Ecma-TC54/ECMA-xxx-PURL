@@ -367,7 +367,6 @@
     <p>Invalid PURLs that fail to conform to the specification must be identified and rejected by any conforming implementation. This guarantees the integrity and reliability of PURLs in all supported contexts.</p>
     <p>A conforming implementation of PURL may extend its functionality by providing ecosystem-specific validation, processing, or metadata handling, as long as these extensions do not violate the core specification. Additionally, implementations may offer auxiliary tools or features, such as utilities for constructing or validating PURLs, provided they align with the standard's requirements.</p>
     <p>A conforming implementation must not redefine or alter the core syntax, components, or semantics defined by this specification. Any prohibited extensions explicitly identified in the specification must not be implemented. Furthermore, behaviours that compromise the interoperability of PURLs across tools, platforms, or ecosystems are strictly disallowed.</p>
-    <p>A conforming implementation of Package-URL may choose to implement or not implement <dfn>Normative Optional</dfn> subclauses. If any Normative Optional behaviour is implemented, all of the behaviour in the containing Normative Optional clause must be implemented. A Normative Optional clause is denoted in this specification with the words "Normative Optional" in a coloured box, as shown below.</p>
   </emu-clause>
 </emu-clause>
 
@@ -516,7 +515,7 @@
   </emu-clause>
   <emu-clause id="sec-purl-specification-separator-characters">
     <h1>Separator characters</h1>
-    <p>This is how each of the Separator Characters are used:</p>
+    <p>This is how each of the Separator Characters is used:</p>
     <ul>
       <li>':' (colon) is the separator between `scheme` and `type`</li>
       <li>'/' (slash) is the separator between `type`, `namespace` and `name`</li>
@@ -596,7 +595,7 @@
           <ul>
             <li>Must not contain any slash '/' characters</li>
             <li>Must not be empty</li>
-            <li>Must contain any Unicode character other than '/' unless the package's `type` definition provides otherwise.</li>
+            <li>May contain any Unicode character other than '/' unless the package's `type` definition provides otherwise.</li>
           </ul>
         </li>
         <li>A URL host or Authority must not be used as a `namespace`. Use instead a `repository_url` qualifier. Note however, that for some types, the `namespace` may look like a host.</li>
