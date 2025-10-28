@@ -2,282 +2,6 @@
 <html lang="en-GB-oxendict">
 <meta charset="utf-8">
 <link rel="icon" href="img/favicon.ico">
-<style>
-  .hljs {
-    color: #24292e !important;
-    background: #ffffff !important;
-  }
-
-  .hljs-doctag,
-  .hljs-keyword,
-  .hljs-meta .hljs-keyword,
-  .hljs-template-tag,
-  .hljs-template-variable,
-  .hljs-type,
-  .hljs-variable.language_ {
-    /* prettylights-syntax-keyword */
-    color: #d73a49 !important;
-  }
-
-  .hljs-title,
-  .hljs-title.class_,
-  .hljs-title.class_.inherited__,
-  .hljs-title.function_ {
-    /* prettylights-syntax-entity */
-    color: #6f42c1 !important;
-  }
-
-  .hljs-attr,
-  .hljs-attribute,
-  .hljs-literal,
-  .hljs-meta,
-  .hljs-number,
-  .hljs-operator,
-  .hljs-variable,
-  .hljs-selector-attr,
-  .hljs-selector-class,
-  .hljs-selector-id {
-    /* prettylights-syntax-constant */
-    color: #005cc5 !important;
-  }
-
-  .hljs-regexp,
-  .hljs-string,
-  .hljs-meta .hljs-string {
-    /* prettylights-syntax-string */
-    color: #032f62 !important;
-  }
-
-  .hljs-built_in,
-  .hljs-symbol {
-    /* prettylights-syntax-variable */
-    color: #e36209 !important;
-  }
-
-  .hljs-comment,
-  .hljs-code,
-  .hljs-formula {
-    /* prettylights-syntax-comment */
-    color: #6a737d !important;
-  }
-
-  .hljs-name,
-  .hljs-quote,
-  .hljs-selector-tag,
-  .hljs-selector-pseudo {
-    /* prettylights-syntax-entity-tag */
-    color: #22863a !important;
-  }
-
-  .hljs-subst {
-    /* prettylights-syntax-storage-modifier-import */
-    color: #24292e !important;
-  }
-
-  .hljs-section {
-    /* prettylights-syntax-markup-heading */
-    color: #005cc5 !important;
-    font-weight: bold !important;
-  }
-
-  .hljs-bullet {
-    /* prettylights-syntax-markup-list */
-    color: #735c0f !important;
-  }
-
-  .hljs-emphasis {
-    /* prettylights-syntax-markup-italic */
-    color: #24292e !important;
-    font-style: italic !important;
-  }
-
-  .hljs-strong {
-    /* prettylights-syntax-markup-bold */
-    color: #24292e !important;
-    font-weight: bold !important;
-  }
-
-  .hljs-addition {
-    /* prettylights-syntax-markup-inserted */
-    color: #22863a !important;
-    background-color: #f0fff4 !important;
-  }
-
-  .hljs-deletion {
-    /* prettylights-syntax-markup-deleted */
-    color: #b31d28 !important;
-    background-color: #ffeef0 !important;
-  }
-
-  .hljs-char.escape_,
-  .hljs-link,
-  .hljs-params,
-  .hljs-property,
-  .hljs-punctuation,
-  .hljs-tag {
-    /* purposely ignored */
-  }
-
-  #metadata-block {
-    margin: 4em 0;
-    padding: 10px;
-    border: 1px solid #ee8421;
-  }
-  #metadata-block h1 {
-    font-size: 1.5em;
-    margin-top: 0;
-  }
-  #metadata-block > ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  #ecma-logo {
-    background: var(--figure-background);
-    width: 500px;
-  }
-
-  pre:has(> code) {
-    margin-block: 0;
-  }
-
-  pre code {
-    white-space: pre-wrap;
-    word-break: break-word;
-    padding: 0 !important;
-  }
-
-  code.pattern {
-    font-weight: normal !important;
-  }
-
-  /*
-  @page {
-    @prince-overlay {
-      color: rgba(0,0,0,0.15);
-      content: "DRAFT";
-      font-family: Arial;
-      font-weight: bolder;
-      font-size: 200pt;
-      transform: rotate(-60deg);
-    }
-  }
-   */
-
-  .unicode-property-table {
-    table-layout: fixed;
-    width: 100%;
-    font-size: 80%;
-  }
-
-  .corner-cell {
-    position: relative;
-    height: 2lh;
-  }
-  .corner-cell .slash {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom left, transparent calc(50% - 1px), gray, transparent calc(50% + 1px));
-  }
-  .corner-cell > .column {
-    position: absolute;
-    bottom: 0.4em;
-    left: 1em;
-  }
-  .corner-cell > .row {
-    position: absolute;
-    top: 0.4em;
-    right: 1em;
-  }
-
-  @supports (color-scheme: dark) {
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --foreground-color: #111;
-        --background-color: #fff;
-
-        --link-foreground-color: #206ca7;
-        --link-hover-foreground-color: #239dee;
-
-        --user-code-foreground-color: brown;
-
-        --var-foreground-color: #218379;
-
-        --referenced0-background-color: #ffff6c;
-        --referenced1-background-color: #ffa4a8;
-        --referenced2-background-color: #96e885;
-        --referenced3-background-color: #3eeed2;
-        --referenced4-background-color: #eacfb6;
-        --referenced5-background-color: #82ddff;
-        --referenced6-background-color: #ffbcf2;
-
-        --note-background-color: #e9fbe9;
-        --note-border-color: #52e052;
-        --note-editor-border-color: #faa;
-
-        --nt-link-foreground-color: #333;
-
-        --production-rhs-background-color: #f0f0f0;
-        --production-rhs-border-color: #888;
-
-        --params-foreground-color: #2aa198;
-        --opt-foreground-color: #b58900;
-
-        --title-foreground-color: #f60;
-
-        --caption-foreground-color: #555555;
-
-        --table-header-background-color: #eeeeee;
-
-        --highlight-background-color-start: rgba(249, 241, 172, 1);
-        --highlight-background-color-end: rgba(249, 241, 172, 0);
-
-        --highlight-background-color: rgba(249, 241, 172, 1);
-
-        --ins-background-color: #e0f8e0;
-        --ins-border-color: #396;
-
-        --del-background-color: #fee;
-
-        --control-foreground-color: #eee;
-        --control-dimmed-foreground-color: #666;
-        --control-background-color: #ddd;
-        --control-dark-background-color: #ccc;
-        --control-border-color: #aaa;
-        --control-light-border-color: #bbb;
-        --control-shortcut-background-color: #eee;
-        --control-shortcut-shadow-color: #ccc;
-        --control-dialog-fade-color: rgba(255, 255, 255, 0.6);
-
-        --control-link-foreground-color: #1567a2;
-
-        --control-input-background-color: #bbb;
-        --control-input-border-color: #999;
-
-        --menu-header-background-color: #bbb;
-        --menu-revealed-link-foreground-color: #206ca7;
-        --menu-unpin-hover-foreground-color: #bb1212;
-
-        --menu-trace-list-foreground-color: #999;
-        --menu-trace-list-background-color: #222;
-
-        --toolbox-tail-background-outside-color: rgba(0, 0, 0, 0);
-        --toolbox-tail-border-outside-color: rgba(204, 204, 204, 0);
-
-        --normative-optional-background-color: #ffeedd;
-        --normative-optional-border-color: #ff6600;
-
-        --attributes-tag-foreground-color: #884400;
-
-        --figure-background: #fff;
-      }
-    }
-  }
-</style>
 <style media="print">
   a[data-print-href]::after {
     content: none;
@@ -351,7 +75,7 @@
   <h1>Conformance</h1>
   <emu-clause id="sec-requirements-terminology">
     <h1>Requirements terminology</h1>
-    <p>In this standard, the words that are used to define the significance of each requirement are detailed below. These words are used in accordance with their definitions in [RFC 2119](https://www.ietf.org/rfc/rfc2119.txt), and their respective meanings are reproduced below:</p>
+    <p>In this Standard, the words that are used to define the significance of each requirement are detailed below. These words are used in accordance with their definitions in <a href="https://www.ietf.org/rfc/rfc2119.txt">RFC 2119</a>, and their respective meanings are reproduced below:</p>
     <ul>
       <li>Must: This word, or the adjective “required” and the auxiliary verb "shall", means that the item is an absolute requirement of the standard.</li>
       <li>Should: This word, or the adjective “recommended”, means that there might exist valid reasons in particular circumstances to ignore this item, but the full implications should be understood and the case carefully weighed before making an implementation decision.</li>
@@ -361,13 +85,13 @@
   </emu-clause>
   <emu-clause id="sec-implementation-conformance">
     <h1>Implementation conformance</h1>
-    <p>A conforming implementation of Package-URL (PURL) must fully implement and support all elements defined within this specification, including the syntax, components, and semantic requirements for constructing and interpreting valid PURLs.</p>
-    <p>A conforming implementation of PURL must adhere to the syntax defined in this specification, ensuring that all PURLs are parsed, constructed, and validated according to the prescribed rules. The implementation must provide full support for ecosystem-agnostic behaviour, enabling PURLs to function consistently and reliably across diverse environments.</p>
-    <p>All required components of a PURL, such as the scheme, type, and name, must be present and validated according to the rules defined in this specification. Additionally, optional components, including qualifiers and subpaths, must be handled appropriately if provided, in full compliance with their specified behaviours.</p>
+    <p>A conforming implementation of Package-URL (PURL) must fully implement and support all elements defined within this Standard, including the syntax, components, and semantic requirements for constructing and interpreting valid PURLs.</p>
+    <p>A conforming implementation of PURL must adhere to the syntax defined in this Standard, ensuring that all PURLs are parsed, constructed, and validated according to the prescribed rules. The implementation must provide full support for ecosystem-agnostic behaviour, enabling PURLs to function consistently and reliably across diverse environments.</p>
+    <p>All required components of a PURL, such as the scheme, type, and name, must be present and validated according to the rules defined in this Standard. Additionally, optional components, including qualifiers and subpaths, must be handled appropriately if provided, in full compliance with their specified behaviours.</p>
     <p>Implementations must ensure that equivalent PURLs are consistently resolved to the same canonical representation. This includes strict adherence to normalisation and equivalence rules. Furthermore, implementations must process URI encoding and decoding for PURL components according to the standards outlined in RFC 3986.</p>
     <p>Invalid PURLs that fail to conform to the specification must be identified and rejected by any conforming implementation. This guarantees the integrity and reliability of PURLs in all supported contexts.</p>
     <p>A conforming implementation of PURL may extend its functionality by providing ecosystem-specific validation, processing, or metadata handling, as long as these extensions do not violate the core specification. Additionally, implementations may offer auxiliary tools or features, such as utilities for constructing or validating PURLs, provided they align with the standard's requirements.</p>
-    <p>A conforming implementation must not redefine or alter the core syntax, components, or semantics defined by this specification. Any prohibited extensions explicitly identified in the specification must not be implemented. Furthermore, behaviours that compromise the interoperability of PURLs across tools, platforms, or ecosystems are strictly disallowed.</p>
+    <p>A conforming implementation must not redefine or alter the core syntax, components, or semantics defined by this Standard. Any prohibited extensions explicitly identified in the specification must not be implemented. Furthermore, behaviours that compromise the interoperability of PURLs across tools, platforms, or ecosystems are strictly disallowed.</p>
   </emu-clause>
 </emu-clause>
 
@@ -398,12 +122,12 @@
 
 <emu-clause id="sec-overview">
   <h1>Overview</h1>
-  <p>This section contains a non-normative overview of the Package-URL specification.</p>
+  <p>This Clause contains a non-normative overview of the Package-URL specification.</p>
   <p>The Package-URL (PURL) specification defines a lightweight, universal syntax for identifying software packages. By leveraging a URL-based format, PURL provides a consistent and interoperable mechanism for referencing software packages across a wide range of ecosystems and tools. Its design addresses the challenges of ambiguity, inconsistency, and fragmentation in software package identification, enabling better interoperability and traceability in modern software supply chains.</p>
-  <p>This specification focuses on the core aspects of PURL, including its syntax, required components, optional attributes, and conformance requirements. It does not cover ecosystem-specific types or extensions such as PURL Version Ranges (VERS). However, the flexibility of PURL allows it to be extended to meet the needs of diverse package ecosystems without compromising its universal applicability.</p>
-  <p>The primary audience for this specification includes developers, tool implementers, and organisations involved in software composition analysis, dependency management, and supply chain security. PURL is foundational to a variety of use cases, from software bill of materials (SBOM) generation and license compliance to vulnerability tracking and software artefact exchange.</p>
+  <p>This Standard focuses on the core aspects of PURL, including its syntax, required components, optional attributes, and conformance requirements. It does not cover ecosystem-specific types or extensions such as PURL Version Ranges (VERS). However, the flexibility of PURL allows it to be extended to meet the needs of diverse package ecosystems without compromising its universal applicability.</p>
+  <p>The primary audience for this Standard includes developers, tool implementers, and organisations involved in software composition analysis, dependency management, and supply chain security. PURL is foundational to a variety of use cases, from software bill of materials (SBOM) generation and license compliance to vulnerability tracking and software artefact exchange.</p>
   <p>While this document serves as the authoritative reference for implementing PURL, it is complemented by various ecosystem-specific guidance documents, examples, and related standards. These resources provide additional context and practical insights for leveraging PURL effectively.</p>
-  <p>This overview is non-normative and serves to provide context for the specification’s intent, purpose, and audience. For detailed requirements and conformance criteria, refer to the normative sections of this specification.</p>
+  <p>This overview is non-normative and serves to provide context for the specification’s intent, purpose, and audience. For detailed requirements and conformance criteria, refer to the normative clauses of this Standard.</p>
 </emu-clause>
 
 <emu-clause id="sec-purl-specification">
@@ -531,7 +255,7 @@
   <emu-clause id="sec-purl-specification-character-encoding">
     <h1>Character encoding</h1>
     <ul>
-      <li>In the <emu-xref href="#sec-purl-specification-component-rules" title></emu-xref> section, each component defines when and how to apply percent-encoding and decoding to its content.</li>
+      <li>In the <emu-xref href="#sec-purl-specification-component-rules" title></emu-xref> clause, each component defines when and how to apply percent-encoding and decoding to its content.</li>
       <li>When percent-encoding is required by a component definition, the component string must first be encoded as UTF-8.</li>
       <li>In the component string, each "data octet" must be replaced by the percent-encoded "character triplet" applying the percent-encoding mechanism defined in <a href="https://datatracker.ietf.org/doc/html/rfc3986#section-2.1">RFC 3986 section 2.1</a>, including the RFC definition of "data octet" and "character triplet", and using these definitions for RFC's "allowed set" and "delimiters":
         <ul>
@@ -555,18 +279,18 @@
 
   <emu-clause id="sec-purl-specification-case-folding">
     <h1>Case folding</h1>
-    <p>References to "lowercase" in this specification refer to the <strong>culture-invariant</strong> full case mapping defined in <a href="https://www.unicode.org/versions/Unicode16.0.0/core-spec/chapter-3/#G34078">Section 3.13.2 of the Unicode Standard</a>.</p>
+    <p>References to "lowercase" in this Standard refer to the <strong>culture-invariant</strong> full case mapping defined in <a href="https://www.unicode.org/versions/Unicode16.0.0/core-spec/chapter-3/#G34078">Section 3.13.2 of the Unicode Standard</a>.</p>
     <p>When applied to the ASCII character set, this operation converts uppercase Latin letters (`A to Z`) to their corresponding lowercase forms (`a to z`). All other ASCII characters remain unchanged.</p>
   </emu-clause>
 
   <emu-clause id="sec-purl-specification-component-rules">
     <h1>Rules for each PURL component</h1>
-    <p>A PURL string is an ASCII URL string composed of seven components. Except as expressly stated otherwise in this section, each component:</p>
+    <p>A PURL string is an ASCII URL string composed of seven components. Except as expressly stated otherwise in this Clause, each component:</p>
     <ul>
-      <li>May be composed of any of the characters defined in the <emu-xref href="#sec-purl-specification-permitted-characters" title></emu-xref> section</li>
-      <li>Must be encoded as defined in the <emu-xref href="#sec-purl-specification-character-encoding" title></emu-xref> section</li>
+      <li>May be composed of any of the characters defined in the <emu-xref href="#sec-purl-specification-permitted-characters" title></emu-xref> clause</li>
+      <li>Must be encoded as defined in the <emu-xref href="#sec-purl-specification-character-encoding" title></emu-xref> clause</li>
     </ul>
-    <p>The "lowercase" rules are defined in the <emu-xref href="#sec-purl-specification-case-folding" title></emu-xref> section.</p>
+    <p>The "lowercase" rules are defined in the <emu-xref href="#sec-purl-specification-case-folding" title></emu-xref> clause.</p>
     <p>The rules for each component are:</p>
     <emu-clause id="sec-purl-specification-rules-scheme">
       <h1>Scheme</h1>
@@ -634,7 +358,7 @@
             <li>A `key` must start with an ASCII letter.</li>
             <li>A `key` must not be percent-encoded.</li>
             <li>Each `key` must be unique among all the keys of the `qualifiers` component.</li>
-            <li>A `value` may contain any Unicode character and all characters must be encoded as described in the <emu-xref href="#sec-purl-specification-character-encoding" title>Character encoding</emu-xref> section.</li>
+            <li>A `value` may contain any Unicode character and all characters must be encoded as described in the <emu-xref href="#sec-purl-specification-character-encoding" title></emu-xref> clause.</li>
           </ul>
         </li>
       </ul>
@@ -1493,7 +1217,7 @@
 
 <emu-annex normative id="sec-schemas">
   <h1>PURL Type Definition</h1>
-  <p>This annex provides a copy of the current Package-URL Type Definition Schema. The format is JSON Schema version <a href="https://json-schema.org/draft-07">draft-07</a>.</p>
+  <p>This Annex provides a copy of the current Package-URL Type Definition Schema. The format is JSON Schema version <a href="https://json-schema.org/draft-07">draft-07</a>.</p>
   <p>The schema shown below is available in electronic form at: <a href="https://github.com/package-url/purl-spec/blob/main/schemas/purl-type-definition.schema.json">https://github.com/package-url/purl-spec/blob/main/schemas/purl-type-definition.schema.json</a></p>
   <pre><code class="language-json">
 {
@@ -1828,6 +1552,6 @@
 
 <emu-annex id="sec-colophon" back-matter>
   <h1>Colophon</h1>
-  <p>This specification is authored on <a href="https://github.com/Ecma-TC54/ECMA-xxx-PURL">GitHub</a> in a plaintext source format called <a href="https://github.com/tc39/ecmarkup">Ecmarkup</a>. Ecmarkup is an HTML and Markdown dialect that provides a framework and toolset for authoring ECMA specifications in plaintext and processing the specification into a full-featured HTML rendering that follows the editorial conventions for this document. Ecmarkup builds on and integrates a number of other formats and technologies including <a href="https://github.com/rbuckton/grammarkdown">Grammarkdown</a> for defining syntax and <a href="https://github.com/tc39/ecmarkdown">Ecmarkdown</a> for authoring algorithm steps. PDF renderings of this specification are produced using a print stylesheet which takes advantage of the CSS Paged Media specification and is converted using <a href="https://www.princexml.com/">PrinceXML</a>.</p>
+  <p>This Standard is authored on <a href="https://github.com/Ecma-TC54/ECMA-xxx-PURL">GitHub</a> in a plaintext source format called <a href="https://github.com/tc39/ecmarkup">Ecmarkup</a>. Ecmarkup is an HTML and Markdown dialect that provides a framework and toolset for authoring ECMA specifications in plaintext and processing the specification into a full-featured HTML rendering that follows the editorial conventions for this document. Ecmarkup builds on and integrates a number of other formats and technologies including <a href="https://github.com/rbuckton/grammarkdown">Grammarkdown</a> for defining syntax and <a href="https://github.com/tc39/ecmarkdown">Ecmarkdown</a> for authoring algorithm steps. PDF renderings of this Standard are produced using a print stylesheet which takes advantage of the CSS Paged Media specification and is converted using <a href="https://www.princexml.com/">PrinceXML</a>.</p>
   <p>We extend our gratitude to TC39 for their exceptional work in developing Ecmarkup, which has greatly facilitated TC54's successful adoption of this tool for the preparation and maintenance of our technical specifications.</p>
 </emu-annex>
