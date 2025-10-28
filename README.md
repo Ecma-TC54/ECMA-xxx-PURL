@@ -1,4 +1,4 @@
-# ECMA-xxx-PURL (Package-URL Specification)
+# ECMA-xxx-PURL (Package-URL specification)
 
 This repository hosts the work-in-progress technical specification for **Package-URL (PURL)**, which is being developed under Ecma International's **Technical Committee 54 (TC54)**. PURL provides a lightweight, URL-based syntax for identifying software packages across diverse ecosystems, enabling interoperability, traceability, and improved supply chain management.
 

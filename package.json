@@ -2,7 +2,7 @@
   "private": true,
   "name": "package-url",
   "version": "1.0.0-SNAPSHOT",
-  "description": "The Package-URL specification",
+  "description": "The Package-URL (PURL) specification",
   "scripts": {
     "ipr-check": "node scripts/check-form Ecma-TC54/ECMA-xxx-PURL HEAD --all",
     "build-head": "npm run build-only -- --lint-spec --strict",
@@ -10,7 +10,7 @@
     "build-only": "ecmarkup --verbose spec.html --multipage out",
     "build": "npm run build-head",
     "build-for-pdf": "ecmarkup --verbose spec.html --printable --assets external --assets-dir out out/index.html",
-    "pdf": "npm run build-for-pdf && prince-books --script ./node_modules/ecmarkup/js/print.js out/index.html -o out/ECMA-PURL.pdf",
+    "pdf": "npm run prebuild-only && npm run build-for-pdf && prince-books --script ./node_modules/ecmarkup/js/print.js out/index.html -o out/ECMA-PURL.pdf",
     "prebuild-snapshot": "npm run clean",
     "build-snapshot": "npm run build-head && node scripts/insert_snapshot_warning.js",
     "clean": "rm -rf out",
