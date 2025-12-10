@@ -11,10 +11,6 @@ The repository serves as the collaborative workspace for drafting, reviewing, an
 - To provide a clear, authoritative reference for implementers, developers, and organisations adopting PURL.
 - To maintain transparency and encourage participation from all stakeholders.
 
-### Important Note on Repository Name
-
-This repository is currently named `ECMA-xxx-PURL` as a placeholder. Upon ratification of the PURL specification as an Ecma International standard, the repository will be renamed to **`ECMA-xxx`**, where `xxx` represents the number assigned by Ecma to the standard.
-
 ## Contributing
 
 Contributions to this specification are managed by TC54. If you are part of the TC54 community or have been invited to collaborate, please follow the contribution guidelines outlined in this repository.
