@@ -1,10 +1,9 @@
 {
   "private": true,
   "name": "package-url",
-  "version": "1.0.0-SNAPSHOT",
   "description": "The Package-URL (PURL) specification",
   "scripts": {
-    "ipr-check": "node scripts/check-form Ecma-TC54/ECMA-xxx-PURL HEAD --all",
+    "ipr-check": "node scripts/check-form Ecma-TC54/ECMA-427 HEAD --all",
     "build-head": "npm run build-only -- --lint-spec --strict",
     "prebuild-only": "npm run clean && mkdir out && cp -R img out",
     "build-only": "ecmarkup --verbose spec.html --multipage out",
@@ -19,7 +18,7 @@
     "watch": "npm run build-only -- --lint-spec --watch",
     "check-commit": "node scripts/check-commit"
   },
-  "repository": "Ecma-TC54/ECMA-xxx-PURL",
+  "repository": "Ecma-TC54/ECMA-427",
   "author": "ECMA TC54",
   "homepage": "https://tc54.org/purl/",
   "devDependencies": {
